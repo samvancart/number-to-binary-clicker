@@ -21,4 +21,4 @@ RUN echo DJANGO_DEBUG=TRUE >> num_to_bin_clicker/config/.env
 # CMD [ "python", "manage.py", "runserver", "0.0.0.0:8000" ]
 
 # CMD for Heroku
-CMD gunicorn ../num_to_bin_clicker.wsgi:application --bind 0.0.0.0:$PORT
+CMD gunicorn num_to_bin_clicker.wsgi:application --bind 0.0.0.0:$PORT
