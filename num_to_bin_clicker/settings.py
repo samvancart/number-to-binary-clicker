@@ -29,7 +29,8 @@ SECRET_KEY = env('DJANGO_SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = env('DJANGO_DEBUG', default=False)
 
-
+CSRF_TRUSTED_ORIGINS = ['http://localhost:8000', 'http://num-to-bin-clicker.herokuapp.com' ]
+CORS_ORIGIN_WHITELIST = ['http://localhost:8000', 'http://num-to-bin-clicker.herokuapp.com']
 ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'num-to-bin-clicker.herokuapp.com']
 
 
