@@ -30,10 +30,7 @@ SECRET_KEY = env('DJANGO_SECRET_KEY')
 DEBUG = env('DJANGO_DEBUG', default=False)
 
 
-ALLOWED_HOSTS = [
-    '*',
-    'num-to-bin-clicker.herokuapp.com/'
-]
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
