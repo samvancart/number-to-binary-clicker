@@ -20,4 +20,4 @@ RUN echo DJANGO_DEBUG=TRUE >> num_to_bin_clicker/config/.env
 # CMD [ "python", "manage.py", "runserver", "0.0.0.0:8000" ]
 
 # CMD for Heroku
-CMD [ "python", "manage.py", "runserver" ]
+CMD [ "python", "manage.py", "runserver", "$PORT" ]
