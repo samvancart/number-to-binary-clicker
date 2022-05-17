@@ -31,7 +31,7 @@ DEBUG = env('DJANGO_DEBUG', default=False)
 
 PORT = env('PORT', default=8000)
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['url']
 
 
 # Application definition
