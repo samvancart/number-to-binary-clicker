@@ -17,13 +17,6 @@ import os
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-STATIC_URL = '/static/clicker/'
-
-STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, 'static/clicker'),
-)
-
 env = environ.Env()
 
 env.read_env(env_file='num_to_bin_clicker/config/.env')
@@ -41,6 +34,10 @@ CSRF_TRUSTED_ORIGINS = ['http://localhost:8000', 'https://num-to-bin-clicker.her
 CORS_ORIGIN_WHITELIST = ['http://localhost:8000', 'https://num-to-bin-clicker.herokuapp.com']
 ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'num-to-bin-clicker.herokuapp.com']
 
+# Simplified static file serving.
+# https://warehouse.python.org/project/whitenoise/
+
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 # Application definition
 
@@ -62,6 +59,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 ROOT_URLCONF = 'num_to_bin_clicker.urls'
