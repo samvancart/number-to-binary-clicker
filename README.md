@@ -28,3 +28,6 @@ run with command `python manage.py runserver`
 or `python3 manage.py runserver`
 
 Server will start at http://localhost:8000/clicker
+
+# Heroku
+A deployment pipeline (using Github Actions) for a containerised (Docker) version of the app is running at https://num-to-bin-clicker.herokuapp.com/. 
