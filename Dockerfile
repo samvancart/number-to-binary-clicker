@@ -27,10 +27,8 @@ WORKDIR /usr/src/app
 RUN echo DJANGO_SECRET_KEY=$(python -c 'from django.core.management.utils import get_random_secret_key;print(get_random_secret_key())') > num_to_bin_clicker/config/.env && \
     echo DJANGO_DEBUG=TRUE >> num_to_bin_clicker/config/.env
 
-WORKDIR /home/appuser/.local/bin
-
 # CMD for local use
 #CMD [ "python", "manage.py", "runserver", "0.0.0.0:8000" ]
 
 # CMD for Heroku
-CMD gunicorn num_to_bin_clicker.wsgi:application --bind 0.0.0.0:$PORT
+CMD /home/appuser/.local/bin/gunicorn num_to_bin_clicker.wsgi:application --bind 0.0.0.0:$PORT
