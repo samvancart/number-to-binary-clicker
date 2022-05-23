@@ -5,7 +5,7 @@ WORKDIR /usr/src/app
 COPY . .
 
 # Heroku doesn't support expose
-#EXPOSE 8000
+EXPOSE 8000
 
 RUN useradd -m appuser && \
     chown -R appuser:appuser .
@@ -31,5 +31,5 @@ RUN echo DJANGO_SECRET_KEY=$(python -c 'from django.core.management.utils import
 #CMD [ "python", "manage.py", "runserver", "0.0.0.0:8000" ]
 
 # CMD for Heroku
-CMD gunicorn num_to_bin_clicker.wsgi:application --bind 0.0.0.0:$PORT
+CMD /home/appuser/.local/lib/python3.8/site-packages gunicorn num_to_bin_clicker.wsgi:application --bind 0.0.0.0:$PORT
 #CMD gunicorn num_to_bin_clicker.wsgi:application --bind 0.0.0.0:8000
