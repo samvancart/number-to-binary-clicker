@@ -10,7 +10,7 @@ COPY . .
 RUN useradd -m appuser && \
     chown -R appuser:appuser .
 
-USER appuser
+USER appuser    
 
 RUN mkdir num_to_bin_clicker/config
 
@@ -26,6 +26,8 @@ WORKDIR /usr/src/app
 
 RUN echo DJANGO_SECRET_KEY=$(python -c 'from django.core.management.utils import get_random_secret_key;print(get_random_secret_key())') > num_to_bin_clicker/config/.env && \
     echo DJANGO_DEBUG=TRUE >> num_to_bin_clicker/config/.env
+
+WORKDIR /home/appuser/.local/bin
 
 # CMD for local use
 #CMD [ "python", "manage.py", "runserver", "0.0.0.0:8000" ]
