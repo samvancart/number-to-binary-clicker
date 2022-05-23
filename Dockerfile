@@ -5,16 +5,9 @@ WORKDIR /usr/src/app
 COPY . .
 
 # Heroku doesn't support expose
-EXPOSE 8000
-
-RUN useradd -m appuser && \
-    chown -R appuser:appuser .
-
-USER appuser    
+#EXPOSE 8000
 
 RUN mkdir num_to_bin_clicker/config
-
-ENV PATH=/home/appuser/.local/bin:$PATH
 
 RUN pip install --no-cache-dir --upgrade pip && \
     pip install --no-cache-dir django==4.0 && \
@@ -27,9 +20,15 @@ WORKDIR /usr/src/app
 RUN echo DJANGO_SECRET_KEY=$(python -c 'from django.core.management.utils import get_random_secret_key;print(get_random_secret_key())') > num_to_bin_clicker/config/.env && \
     echo DJANGO_DEBUG=TRUE >> num_to_bin_clicker/config/.env
 
+RUN useradd -m appuser && \
+
+USER appuser
+
 # CMD for local use
 #CMD [ "python", "manage.py", "runserver", "0.0.0.0:8000" ]
-WORKDIR /home/appuser/.local/lib/python3.8/site-packages
+
 # CMD for Heroku
 CMD gunicorn num_to_bin_clicker.wsgi:application --bind 0.0.0.0:$PORT
+
+#gunicorn for local use
 #CMD gunicorn num_to_bin_clicker.wsgi:application --bind 0.0.0.0:8000
