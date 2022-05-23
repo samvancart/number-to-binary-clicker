@@ -29,7 +29,7 @@ RUN echo DJANGO_SECRET_KEY=$(python -c 'from django.core.management.utils import
 
 # CMD for local use
 #CMD [ "python", "manage.py", "runserver", "0.0.0.0:8000" ]
-
+WORKDIR /home/appuser/.local/lib/python3.8/site-packages
 # CMD for Heroku
-CMD /home/appuser/.local/lib/python3.8/site-packages gunicorn num_to_bin_clicker.wsgi:application --bind 0.0.0.0:$PORT
+CMD gunicorn num_to_bin_clicker.wsgi:application --bind 0.0.0.0:$PORT
 #CMD gunicorn num_to_bin_clicker.wsgi:application --bind 0.0.0.0:8000
